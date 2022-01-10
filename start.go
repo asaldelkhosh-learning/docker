@@ -3,7 +3,6 @@ package main
 import (
 	"PM/pool"
 	"PM/tools"
-	"fmt"
 )
 
 func main() {
@@ -14,9 +13,7 @@ func main() {
 
 	for {
 		tools.Clear()
-		for _, prc := range pl.Monitor().WorkerList() {
-			fmt.Println(prc)
-		}
+		tools.Render(pl)
 		tools.Delay(3)
 	}
 }
