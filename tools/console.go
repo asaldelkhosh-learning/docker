@@ -11,6 +11,7 @@ func Render(pl gowl.Pool) {
 	mon := pl.Monitor()
 
 	for _, prc := range mon.WorkerList() {
-		fmt.Println(pl.Monitor().WorkerStatus(prc))
+		fmt.Print(prc + " : ")
+		fmt.Println(pl.Monitor().WorkerStatus(prc).String())
 	}
 }
