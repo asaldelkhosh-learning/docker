@@ -2,25 +2,21 @@ package main
 
 import (
 	"PM/pool"
+	"PM/tools"
 	"fmt"
-	"os"
-	"os/exec"
-	"time"
 )
 
 func main() {
 	pl := pool.GetPool(5)
 
 	defer pl.Close()
-	pl.Start()
+	_ = pl.Start()
 
 	for {
+		tools.Clear()
 		for _, prc := range pl.Monitor().WorkerList() {
 			fmt.Println(prc)
 		}
-		time.Sleep(time.Second * 5)
-		c := exec.Command("clear")
-		c.Stdout = os.Stdout
-		c.Run()
+		tools.Delay(3)
 	}
 }
