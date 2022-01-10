@@ -1,9 +1,17 @@
 package main
 
-import "github.com/hamed-yousefi/gowl"
+import (
+	"PM/pool"
+	"fmt"
+)
 
 func main() {
-	pool := gowl.NewPool(4)
-	defer pool.Close()
-	_ = pool.Start()
+	pl := pool.GetPool(5)
+
+	defer pl.Close()
+	pl.Start()
+
+	for _, prc := range pl.Monitor().WorkerList() {
+		fmt.Println(prc)
+	}
 }
