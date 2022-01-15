@@ -1,7 +1,7 @@
 package operators
 
 var (
-	Database   = "database"
-	Preprocess = "u_process"
+	Database   = "database transaction"
+	Preprocess = "user process"
 	Syslog     = "system log"
 )
