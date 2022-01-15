@@ -1,7 +1,7 @@
 package main
 
 import (
-	"PM/operands"
+	"PM/linker"
 	"PM/operators"
 	"log"
 )
@@ -11,6 +11,7 @@ func main() {
 
 	for _, operation := range operations {
 		log.Println(operation)
-		operands.RunTest()
+		operator := linker.Link(operation)
+		operator()
 	}
 }
