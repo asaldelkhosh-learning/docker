@@ -15,5 +15,5 @@ func RunTest() {
 		log.Fatal(err)
 	}
 	log.Printf("Just ran subprocess %d, exiting\n", cmd.Process.Pid)
-	time.Sleep(5 * time.Second)
+	time.Sleep(2 * time.Second)
 }

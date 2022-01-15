@@ -4,6 +4,7 @@ import (
 	"PM/linker"
 	"PM/operators"
 	"log"
+	"time"
 )
 
 func main() {
@@ -12,6 +13,7 @@ func main() {
 	for _, operation := range operations {
 		log.Println(operation)
 		operator := linker.Link(operation)
-		operator()
+		go operator()
 	}
+	time.Sleep(10 * time.Second)
 }
