@@ -5,3 +5,7 @@ var (
 	Preprocess = "user process"
 	Syslog     = "system log"
 )
+
+func List() []string {
+	return nil
+}
