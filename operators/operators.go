@@ -7,5 +7,5 @@ var (
 )
 
 func List() []string {
-	return nil
+	return []string{Database, Preprocess, Syslog}
 }
