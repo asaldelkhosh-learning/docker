@@ -14,6 +14,8 @@ func (l *Linker) Link(operator string) func() {
 }
 
 func (l *Linker) Config() {
+	l.Operand = make(map[string]func())
+
 	for _, operator := range operators.List() {
 		var operand func()
 
