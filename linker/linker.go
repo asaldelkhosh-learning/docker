@@ -8,11 +8,11 @@ import (
 func Link(operator string) func() {
 	switch operator {
 	case operators.Syslog:
-		return operands.RunTest
+		return operands.Log
 	case operators.Database:
-		return operands.RunTest
+		return operands.DBTransaction
 	case operators.Preprocess:
-		return operands.RunTest
+		return operands.UserProcess
 	}
 
 	return nil
