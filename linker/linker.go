@@ -14,20 +14,9 @@ func (l *Linker) Link(operator string) func() {
 }
 
 func (l *Linker) Config() {
-	l.Operand = make(map[string]func())
-
-	for _, operator := range operators.List() {
-		var operand func()
-
-		switch operator {
-		case operators.Syslog:
-			operand = operands.Log
-		case operators.Database:
-			operand = operands.DBTransaction
-		case operators.Preprocess:
-			operand = operands.UserProcess
-		}
-
-		l.Operand[operator] = operand
+	l.Operand = map[string]func(){
+		operators.Syslog:     operands.Log,
+		operators.Database:   operands.DBTransaction,
+		operators.Preprocess: operands.UserProcess,
 	}
 }
