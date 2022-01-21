@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	operations := []string{operators.Syslog, operators.Database, operators.Preprocess}
+	operations := []string{operators.Syslog}
 
 	var link linker.Linker
 	link.Config()
@@ -18,5 +18,5 @@ func main() {
 		operator := link.Link(operation)
 		go operator()
 	}
-	time.Sleep(10 * time.Second)
+	time.Sleep(5 * time.Second)
 }

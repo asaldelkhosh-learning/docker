@@ -1,5 +1,9 @@
 package operands
 
+import "PM/internal/commandor"
+
+var file = "log.sh"
+
 func Log() {
-	RunTest()
+	commandor.Exec(file)
 }
