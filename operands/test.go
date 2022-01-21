@@ -7,8 +7,10 @@ import (
 	"time"
 )
 
+var DIR = "./scripts/"
+
 func RunTest() {
-	cmd := exec.Command("./script.sh")
+	cmd := exec.Command(DIR + "script.sh")
 	cmd.Stdout = os.Stdout
 	err := cmd.Start()
 	if err != nil {
