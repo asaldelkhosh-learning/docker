@@ -1,8 +1,18 @@
 package main
 
-import "fmt"
-
 func main() {
 	Init()
-	fmt.Print("Goo")
+	for true {
+		cmd := "" // Get input
+		switch {
+		case cmd == "new":
+			// New process function
+		case cmd == "kill":
+			// Kill process
+		case cmd == "monitor":
+			// Monitoring
+		case cmd == "terminate":
+			break
+		}
+	}
 }
