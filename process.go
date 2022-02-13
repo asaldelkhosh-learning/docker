@@ -22,6 +22,7 @@ func (p Process) Run() {
 		Last = p.PID
 		// Do
 		fmt.Printf("Process %d is running now: %s\n", p.PID, p.Task)
+		p.UpdatedAt = time.Now()
 		// Unlock
 		Lock.Unlock()
 		// Waiting
