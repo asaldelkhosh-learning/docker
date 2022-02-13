@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -12,16 +11,18 @@ type Process struct {
 	UpdatedAt time.Time
 	Delay     int32
 	Terminate bool
+	Called    int
 }
 
 func (p Process) Run() {
 	// Function
+	p.Called = 0
 	for p.Terminate {
 		// Lock
 		Lock.Lock()
 		Last = p.PID
 		// Do
-		fmt.Printf("Process %d is running now: %s\n", p.PID, p.Task)
+		p.Called++
 		p.UpdatedAt = time.Now()
 		// Unlock
 		Lock.Unlock()
