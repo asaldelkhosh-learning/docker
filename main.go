@@ -1,23 +1,12 @@
 package main
 
-import (
-	"bufio"
-	"fmt"
-	"os"
-	"strings"
-)
-
 func main() {
-	reader := bufio.NewReader(os.Stdin)
-	if reader == nil {
-		panic(fmt.Errorf("problem in reader"))
-	}
-
+	inp := Input{}
+	inp = inp.Init()
 	Init()
 
 	for true {
-		cmd, _ := reader.ReadString('\n')
-		cmd = strings.Trim(cmd, "\n")
+		cmd := inp.Get()
 
 		switch {
 		case cmd == "new":

@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 type Input struct {
@@ -16,4 +17,11 @@ func (i *Input) Init() Input {
 		panic(fmt.Errorf("problem in reader"))
 	}
 	return *i
+}
+
+func (i Input) Get() string {
+	cmd, _ := i.reader.ReadString('\n')
+	cmd = strings.Trim(cmd, "\n")
+
+	return cmd
 }
