@@ -1,6 +1,10 @@
 package main
 
 import (
+	"PM/input"
+	"PM/lock"
+	"PM/process"
+	"PM/storage"
 	"fmt"
 	"strconv"
 	"strings"
@@ -8,12 +12,12 @@ import (
 )
 
 func main() {
-	stg := Storage{}
+	stg := storage.Storage{}
 	stg.Init(10)
 
-	inp := Input{}.Init()
+	inp := input.Input{}.Init()
 
-	Init()
+	lock.Init()
 
 	for true {
 		fmt.Print("> ")
@@ -31,7 +35,7 @@ func main() {
 				panic(err)
 			}
 
-			stg.Add(Process{
+			stg.Add(process.Process{
 				PID:       int32(ID),
 				Delay:     int32(delay),
 				Task:      cmd[1],

@@ -1,9 +1,13 @@
-package main
+package storage
 
-import "fmt"
+import (
+	"PM/lock"
+	"PM/process"
+	"fmt"
+)
 
 type Storage struct {
-	list     []Process
+	list     []process.Process
 	capacity int
 }
 
@@ -11,7 +15,7 @@ func (s *Storage) Init(capacity int) {
 	s.capacity = capacity
 }
 
-func (s *Storage) Add(p Process) {
+func (s *Storage) Add(p process.Process) {
 	s.list = append(s.list, p)
 	go p.Run()
 }
@@ -27,7 +31,7 @@ func (s *Storage) Kill(ID int32) {
 }
 
 func (s Storage) View() {
-	fmt.Printf("Last Process: %d\n", Last)
+	fmt.Printf("Last Process: %d\n", lock.Last)
 	for i, p := range s.list {
 		fmt.Printf("%d: Process %d | Task %s | Executed %d | Last Update %s\n", i+1, p.PID, p.Task, p.Called, p.UpdatedAt)
 	}

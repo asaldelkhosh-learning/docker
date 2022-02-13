@@ -1,6 +1,7 @@
-package main
+package process
 
 import (
+	"PM/lock"
 	"time"
 )
 
@@ -19,13 +20,13 @@ func (p Process) Run() {
 	p.Called = 0
 	for p.Terminate {
 		// Lock
-		Lock.Lock()
-		Last = p.PID
+		lock.Lock.Lock()
+		lock.Last = p.PID
 		// Do
 		p.Called++
 		p.UpdatedAt = time.Now()
 		// Unlock
-		Lock.Unlock()
+		lock.Lock.Unlock()
 		// Waiting
 		time.Sleep(time.Second * time.Duration(p.Delay))
 	}
