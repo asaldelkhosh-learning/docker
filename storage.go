@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type Storage struct {
 	list     []Process
 	capacity int
@@ -21,5 +23,12 @@ func (s *Storage) Kill(ID int32) {
 			s.list = append(s.list[:index], s.list[index+1:]...)
 			break
 		}
+	}
+}
+
+func (s Storage) View() {
+	fmt.Printf("Last Process: %d\n", Last)
+	for i, p := range s.list {
+		fmt.Printf("%d: Process %d | Task %s | Last Update %s\n", i+1, p.PID, p.Task, p.UpdatedAt)
 	}
 }

@@ -45,7 +45,7 @@ func main() {
 
 			stg.Kill(int32(ID))
 		case cmd[0] == "monitor":
-			// Monitoring
+			stg.View()
 		case cmd[0] == "terminate":
 			break
 		}
