@@ -15,10 +15,10 @@ type Process struct {
 	Called    int
 }
 
-func (p Process) Run() {
+func (p *Process) Run() {
 	// Function
 	p.Called = 0
-	for p.Terminate {
+	for !p.Terminate {
 		// Lock
 		lock.Lock.Lock()
 		lock.Last = p.PID

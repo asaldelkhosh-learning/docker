@@ -36,7 +36,7 @@ func main() {
 				panic(err)
 			}
 
-			stg.Add(process.Process{
+			proc := stg.Add(process.Process{
 				PID:       int32(ID),
 				Delay:     int32(delay),
 				Task:      cmd[1],
@@ -44,6 +44,8 @@ func main() {
 				UpdatedAt: time.Now(),
 				Terminate: false,
 			})
+
+			go proc.Run()
 		case cmd[0] == "kill":
 			ID, err := strconv.Atoi(cmd[1])
 			if err != nil {

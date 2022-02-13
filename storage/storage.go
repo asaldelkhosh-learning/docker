@@ -15,9 +15,9 @@ func (s *Storage) Init(capacity int) {
 	s.capacity = capacity
 }
 
-func (s *Storage) Add(p process.Process) {
+func (s *Storage) Add(p process.Process) process.Process {
 	s.list = append(s.list, p)
-	go p.Run()
+	return p
 }
 
 func (s *Storage) Kill(ID int32) {
