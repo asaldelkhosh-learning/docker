@@ -1,10 +1,10 @@
 package main
 
 import (
-	"PM/input"
-	"PM/lock"
-	"PM/process"
-	"PM/storage"
+	"cmd/input"
+	"cmd/lock"
+	"cmd/process"
+	"cmd/storage"
 	"fmt"
 	"strconv"
 	"strings"

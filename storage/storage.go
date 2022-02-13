@@ -1,8 +1,8 @@
 package storage
 
 import (
-	"PM/lock"
-	"PM/process"
+	"cmd/lock"
+	"cmd/process"
 	"fmt"
 )
 

@@ -1,7 +1,7 @@
 package process
 
 import (
-	"PM/lock"
+	"cmd/lock"
 	"time"
 )
 
