@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 	"time"
@@ -15,6 +16,7 @@ func main() {
 	Init()
 
 	for true {
+		fmt.Print("> ")
 		cmd := strings.Split(inp.Get(), " ")
 
 		switch {
