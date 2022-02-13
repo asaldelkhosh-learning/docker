@@ -6,6 +6,7 @@ import (
 	"cmd/process"
 	"cmd/storage"
 	"fmt"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -53,7 +54,7 @@ func main() {
 		case cmd[0] == "monitor":
 			stg.View()
 		case cmd[0] == "terminate":
-			break
+			os.Exit(1)
 		}
 	}
 }
