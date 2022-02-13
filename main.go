@@ -1,21 +1,22 @@
 package main
 
+import "strings"
+
 func main() {
-	inp := Input{}
-	inp = inp.Init()
+	inp := Input{}.Init()
 	Init()
 
 	for true {
-		cmd := inp.Get()
+		cmd := strings.Split(inp.Get(), " ")
 
 		switch {
-		case cmd == "new":
+		case cmd[0] == "new":
 			// New process function
-		case cmd == "kill":
+		case cmd[0] == "kill":
 			// Kill process
-		case cmd == "monitor":
+		case cmd[0] == "monitor":
 			// Monitoring
-		case cmd == "terminate":
+		case cmd[0] == "terminate":
 			break
 		}
 	}

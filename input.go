@@ -11,12 +11,12 @@ type Input struct {
 	reader *bufio.Reader
 }
 
-func (i *Input) Init() Input {
+func (i Input) Init() Input {
 	reader := bufio.NewReader(os.Stdin)
 	if reader == nil {
 		panic(fmt.Errorf("problem in reader"))
 	}
-	return *i
+	return i
 }
 
 func (i Input) Get() string {
