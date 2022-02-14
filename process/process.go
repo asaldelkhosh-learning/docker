@@ -33,6 +33,6 @@ func (p *Process) Run() {
 	}
 }
 
-func (p Process) Status(i int) string {
+func (p *Process) Status(i int) string {
 	return fmt.Sprintf("%d: Process %d | Task %s | Executed %d | Last Update %s\n", i+1, p.PID, p.Task, p.Called, p.UpdatedAt)
 }

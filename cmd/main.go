@@ -36,7 +36,7 @@ func main() {
 				panic(err)
 			}
 
-			proc := stg.Add(process.Process{
+			proc := stg.Add(&process.Process{
 				PID:       int32(ID),
 				Delay:     int32(delay),
 				Task:      cmd[1],
