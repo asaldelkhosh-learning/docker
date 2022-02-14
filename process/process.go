@@ -2,6 +2,7 @@ package process
 
 import (
 	"cmd/lock"
+	"fmt"
 	"time"
 )
 
@@ -30,4 +31,8 @@ func (p *Process) Run() {
 		// Waiting
 		time.Sleep(time.Second * time.Duration(p.Delay))
 	}
+}
+
+func (p Process) Status(i int) string {
+	return fmt.Sprintf("%d: Process %d | Task %s | Executed %d | Last Update %s\n", i+1, p.PID, p.Task, p.Called, p.UpdatedAt)
 }

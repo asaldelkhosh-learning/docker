@@ -33,6 +33,6 @@ func (s *Storage) Kill(ID int32) {
 func (s Storage) View() {
 	fmt.Printf("Last Process: %d\n", lock.Last)
 	for i, p := range s.list {
-		fmt.Printf("%d: Process %d | Task %s | Executed %d | Last Update %s\n", i+1, p.PID, p.Task, p.Called, p.UpdatedAt)
+		fmt.Print(p.Status(i))
 	}
 }
