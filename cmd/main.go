@@ -12,7 +12,16 @@ import (
 )
 
 func main() {
-	c, er := strconv.Atoi(os.Args[1])
+	var (
+		c  int
+		er error
+	)
+
+	if len(os.Args) == 1 {
+		c = 10
+	} else {
+		c, er = strconv.Atoi(os.Args[1])
+	}
 
 	if er != nil {
 		panic(fmt.Errorf("limit should be number, invalid: '%s'", os.Args[1]))
