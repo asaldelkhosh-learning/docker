@@ -69,6 +69,7 @@ func main() {
 				CreatedAt: time.Now(),
 				UpdatedAt: time.Now(),
 				Terminate: false,
+				Pause:     false,
 			})
 
 			if proc == nil {
@@ -84,6 +85,10 @@ func main() {
 			}
 
 			stg.Kill(int32(ID))
+		case cmd["command"] == "pause":
+			// pause process
+		case cmd["command"] == "run":
+			// unpausing process
 		case cmd["command"] == "monitor":
 			stg.View()
 		case cmd["command"] == "terminate":
