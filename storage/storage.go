@@ -11,12 +11,23 @@ type Storage struct {
 	capacity int
 }
 
+var pid int
+
 func (s *Storage) Init(capacity int) {
 	s.capacity = capacity
+	pid = 1
 }
 
 func (s *Storage) Add(p *process.Process) *process.Process {
+	if pid > s.capacity {
+		return nil
+	}
+
+	p.PID = int32(pid)
+	pid++
+
 	s.list = append(s.list, p)
+
 	return p
 }
 
