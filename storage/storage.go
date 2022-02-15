@@ -54,6 +54,15 @@ func (s Storage) Pause(ID int32) {
 	}
 }
 
+func (s Storage) Unpause(ID int32) {
+	for _, p := range s.list {
+		if p.PID == ID {
+			p.Pause = false
+			return
+		}
+	}
+}
+
 func (s Storage) View() {
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)

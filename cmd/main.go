@@ -93,7 +93,12 @@ func main() {
 
 			stg.Pause(int32(ID))
 		case cmd["command"] == "run":
-			// unpausing process
+			ID, err := strconv.Atoi(cmd["--id"])
+			if err != nil {
+				panic(err)
+			}
+
+			stg.Unpause(int32(ID))
 		case cmd["command"] == "monitor":
 			stg.View()
 		case cmd["command"] == "terminate":
