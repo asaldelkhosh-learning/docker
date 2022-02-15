@@ -45,6 +45,8 @@ func (s *Storage) Kill(ID int32) {
 func (s Storage) View() {
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
+	t.SetStyle(table.StyleColoredBlackOnGreenWhite)
+	t.SetTitle("Monitoring Processes")
 	t.AppendHeader(table.Row{"#", "PID", "Delay", "Created At", "Last Update", "Task", "Number of executions"})
 
 	for i, p := range s.list {
