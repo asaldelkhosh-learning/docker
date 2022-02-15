@@ -7,7 +7,6 @@ import (
 	"cmd/storage"
 	"fmt"
 	"os"
-	"os/exec"
 	"strconv"
 	"time"
 )
@@ -38,12 +37,9 @@ func main() {
 	user, _ := os.Hostname()
 
 	for true {
+		stg.View()
 		fmt.Printf("\n%s > ", user)
 		cmd, err := inp.Decode(inp.Get())
-
-		c := exec.Command("clear")
-		c.Stdout = os.Stdout
-		_ = c.Run()
 
 		if err != nil {
 			fmt.Println(err.Error())
@@ -99,8 +95,6 @@ func main() {
 			}
 
 			stg.Pause(int32(ID), false)
-		case cmd["command"] == "monitor":
-			stg.View()
 		case cmd["command"] == "terminate":
 			os.Exit(1)
 		}

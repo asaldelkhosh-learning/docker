@@ -3,6 +3,7 @@ package storage
 import (
 	"cmd/process"
 	"os"
+	"os/exec"
 	"time"
 
 	"github.com/jedib0t/go-pretty/v6/table"
@@ -55,6 +56,10 @@ func (s Storage) Pause(ID int32, flag bool) {
 }
 
 func (s Storage) View() {
+	c := exec.Command("clear")
+	c.Stdout = os.Stdout
+	_ = c.Run()
+
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
 	t.SetStyle(table.StyleColoredBlackOnGreenWhite)
