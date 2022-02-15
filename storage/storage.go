@@ -45,19 +45,10 @@ func (s *Storage) Kill(ID int32) {
 	}
 }
 
-func (s Storage) Pause(ID int32) {
+func (s Storage) Pause(ID int32, flag bool) {
 	for _, p := range s.list {
 		if p.PID == ID {
-			p.Pause = true
-			return
-		}
-	}
-}
-
-func (s Storage) Unpause(ID int32) {
-	for _, p := range s.list {
-		if p.PID == ID {
-			p.Pause = false
+			p.Pause = flag
 			return
 		}
 	}

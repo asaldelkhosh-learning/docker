@@ -91,14 +91,14 @@ func main() {
 				panic(err)
 			}
 
-			stg.Pause(int32(ID))
+			stg.Pause(int32(ID), true)
 		case cmd["command"] == "run":
 			ID, err := strconv.Atoi(cmd["--id"])
 			if err != nil {
 				panic(err)
 			}
 
-			stg.Unpause(int32(ID))
+			stg.Pause(int32(ID), false)
 		case cmd["command"] == "monitor":
 			stg.View()
 		case cmd["command"] == "terminate":
