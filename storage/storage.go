@@ -1,9 +1,10 @@
 package storage
 
 import (
-	"cmd/lock"
 	"cmd/process"
-	"fmt"
+	"os"
+
+	"github.com/jedib0t/go-pretty/v6/table"
 )
 
 type Storage struct {
@@ -42,8 +43,12 @@ func (s *Storage) Kill(ID int32) {
 }
 
 func (s Storage) View() {
-	fmt.Printf("Last Process: %d\n", lock.Last)
+	t := table.NewWriter()
+	t.SetOutputMirror(os.Stdout)
+	t.AppendHeader(table.Row{"#", "PID", "Delay", "Created At", "Last Update", "Task", "Number of executions"})
+
 	for i, p := range s.list {
-		fmt.Print(p.Status(i))
+		t.AppendRow([]interface{}{i, p.PID, p.Delay, p.CreatedAt, p.UpdatedAt, p.Task, p.Called})
 	}
+	t.Render()
 }
