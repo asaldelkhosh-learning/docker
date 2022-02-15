@@ -12,6 +12,7 @@ type Process struct {
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	Delay     int32
+	Burst     int32
 	Terminate bool
 	Called    int
 }
@@ -26,6 +27,8 @@ func (p *Process) Run() {
 		// Do
 		p.Called++
 		p.UpdatedAt = time.Now()
+		// Burst
+		time.Sleep(time.Second * time.Duration(p.Burst))
 		// Unlock
 		lock.Lock.Unlock()
 		// Waiting

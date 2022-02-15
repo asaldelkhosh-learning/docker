@@ -57,9 +57,15 @@ func main() {
 				panic(err)
 			}
 
+			burst, err := strconv.Atoi(cmd["--burst"])
+			if err != nil {
+				panic(err)
+			}
+
 			proc := stg.Add(&process.Process{
 				Delay:     int32(delay),
 				Task:      cmd["--task"],
+				Burst:     int32(burst),
 				CreatedAt: time.Now(),
 				UpdatedAt: time.Now(),
 				Terminate: false,
