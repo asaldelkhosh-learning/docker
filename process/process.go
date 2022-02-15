@@ -15,12 +15,18 @@ type Process struct {
 	Burst     int32
 	Terminate bool
 	Called    int
+	Pause     bool
 }
 
 func (p *Process) Run() {
 	// Function
 	p.Called = 0
 	for !p.Terminate {
+		// Check for pause
+		if p.Pause {
+			time.Sleep(3 * time.Second)
+			continue
+		}
 		// Lock
 		lock.Lock.Lock()
 		lock.Last = p.PID
