@@ -53,7 +53,7 @@ func (s Storage) View() {
 	t.AppendHeader(table.Row{"#", "PID", "Delay", "Created At", "Last Update", "Task", "Number of executions"})
 
 	for i, p := range s.list {
-		t.AppendRow([]interface{}{i, p.PID, p.Delay, p.CreatedAt.Format(time.StampMilli), p.UpdatedAt.Format(time.StampMilli), p.Task, p.Called})
+		t.AppendRow([]interface{}{i + 1, p.PID, p.Delay, p.CreatedAt.Format(time.StampMilli), p.UpdatedAt.Format(time.StampMilli), p.Task, p.Called})
 	}
 	t.Render()
 }
