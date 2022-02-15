@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -24,4 +25,15 @@ func (i Input) Get() string {
 	cmd = strings.Trim(cmd, "\n")
 
 	return cmd
+}
+
+func (i Input) Decode(cmd string) map[string]string {
+	pack := make(map[string]string)
+	parts := strings.Split(cmd, " ")
+
+	for index, part := range parts {
+		pack[strconv.Itoa(index)] = part
+	}
+
+	return pack
 }
