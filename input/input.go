@@ -38,6 +38,13 @@ func (i Input) Decode(cmd string) (map[string]string, error) {
 
 	for index := 1; index < len(parts); index += 2 {
 		if strings.HasPrefix(parts[index], "--") {
+			if index+1 >= len(parts) {
+				return nil, fmt.Errorf("mismatch in key value pairs")
+			}
+			if strings.HasPrefix(parts[index+1], "--") {
+				return nil, fmt.Errorf("no values for '%s' flag were given", parts[index])
+			}
+
 			pack[parts[index]] = parts[index+1]
 		} else {
 			return nil, fmt.Errorf("given flag '%s' not supported", parts[index])
