@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-	"strings"
 	"time"
 )
 
@@ -22,16 +21,21 @@ func main() {
 
 	for true {
 		fmt.Print("> ")
-		cmd := strings.Split(inp.Get(), " ")
+		cmd, err := inp.Decode(inp.Get())
+
+		if err != nil {
+			fmt.Printf(err.Error())
+			continue
+		}
 
 		switch {
-		case cmd[0] == "new":
-			ID, err := strconv.Atoi(cmd[1])
+		case cmd["command"] == "new":
+			ID, err := strconv.Atoi(cmd["--id"])
 			if err != nil {
 				panic(err)
 			}
 
-			delay, err := strconv.Atoi(cmd[3])
+			delay, err := strconv.Atoi(cmd["--delay"])
 			if err != nil {
 				panic(err)
 			}
@@ -39,23 +43,23 @@ func main() {
 			proc := stg.Add(&process.Process{
 				PID:       int32(ID),
 				Delay:     int32(delay),
-				Task:      cmd[1],
+				Task:      cmd["--task"],
 				CreatedAt: time.Now(),
 				UpdatedAt: time.Now(),
 				Terminate: false,
 			})
 
 			go proc.Run()
-		case cmd[0] == "kill":
-			ID, err := strconv.Atoi(cmd[1])
+		case cmd["command"] == "kill":
+			ID, err := strconv.Atoi(cmd["--id"])
 			if err != nil {
 				panic(err)
 			}
 
 			stg.Kill(int32(ID))
-		case cmd[0] == "monitor":
+		case cmd["command"] == "monitor":
 			stg.View()
-		case cmd[0] == "terminate":
+		case cmd["command"] == "terminate":
 			os.Exit(1)
 		}
 	}
