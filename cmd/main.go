@@ -7,6 +7,7 @@ import (
 	"cmd/storage"
 	"fmt"
 	"os"
+	"os/exec"
 	"strconv"
 	"time"
 )
@@ -37,6 +38,10 @@ func main() {
 	for true {
 		fmt.Print("> ")
 		cmd, err := inp.Decode(inp.Get())
+
+		c := exec.Command("clear")
+		c.Stdout = os.Stdout
+		_ = c.Run()
 
 		if err != nil {
 			fmt.Println(err.Error())
