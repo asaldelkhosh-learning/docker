@@ -13,7 +13,7 @@ import (
 
 func main() {
 	stg := storage.Storage{}
-	stg.Init(10)
+	stg.Init(2)
 
 	inp := input.Input{}.Init()
 
@@ -30,24 +30,23 @@ func main() {
 
 		switch {
 		case cmd["command"] == "new":
-			ID, err := strconv.Atoi(cmd["--id"])
-			if err != nil {
-				panic(err)
-			}
-
 			delay, err := strconv.Atoi(cmd["--delay"])
 			if err != nil {
 				panic(err)
 			}
 
 			proc := stg.Add(&process.Process{
-				PID:       int32(ID),
 				Delay:     int32(delay),
 				Task:      cmd["--task"],
 				CreatedAt: time.Now(),
 				UpdatedAt: time.Now(),
 				Terminate: false,
 			})
+
+			if proc == nil {
+				fmt.Println("not enough capacity to create new process")
+				continue
+			}
 
 			go proc.Run()
 		case cmd["command"] == "kill":
