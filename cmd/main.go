@@ -86,7 +86,12 @@ func main() {
 
 			stg.Kill(int32(ID))
 		case cmd["command"] == "pause":
-			// pause process
+			ID, err := strconv.Atoi(cmd["--id"])
+			if err != nil {
+				panic(err)
+			}
+
+			stg.Pause(int32(ID))
 		case cmd["command"] == "run":
 			// unpausing process
 		case cmd["command"] == "monitor":
