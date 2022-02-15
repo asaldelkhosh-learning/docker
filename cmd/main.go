@@ -12,8 +12,14 @@ import (
 )
 
 func main() {
+	c, er := strconv.Atoi(os.Args[1])
+
+	if er != nil {
+		panic(fmt.Errorf("limit should be number, invalid: '%s'", os.Args[1]))
+	}
+
 	stg := storage.Storage{}
-	stg.Init(2)
+	stg.Init(c)
 
 	inp := input.Input{}.Init()
 
