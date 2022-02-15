@@ -24,7 +24,7 @@ func main() {
 		cmd, err := inp.Decode(inp.Get())
 
 		if err != nil {
-			fmt.Printf(err.Error())
+			fmt.Println(err.Error())
 			continue
 		}
 
