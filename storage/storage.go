@@ -59,10 +59,15 @@ func (s Storage) View() {
 	t.SetOutputMirror(os.Stdout)
 	t.SetStyle(table.StyleColoredBlackOnGreenWhite)
 	t.SetTitle("Monitoring Processes")
-	t.AppendHeader(table.Row{"#", "PID", "Delay", "Created At", "Last Update", "Task", "Executed"})
+	t.AppendHeader(table.Row{"#", "PID", "Delay", "Status", "Created At", "Last Update", "Task", "Executed"})
 
 	for i, p := range s.list {
-		t.AppendRow([]interface{}{i + 1, p.PID, p.Delay, p.CreatedAt.Format(time.StampMilli), p.UpdatedAt.Format(time.StampMilli), p.Task, p.Called})
+		var status string
+		if status = "RUNNING"; p.Pause {
+			status = "WAITING"
+		}
+
+		t.AppendRow([]interface{}{i + 1, p.PID, p.Delay, status, p.CreatedAt.Format(time.StampMilli), p.UpdatedAt.Format(time.StampMilli), p.Task, p.Called})
 	}
 	t.Render()
 }
