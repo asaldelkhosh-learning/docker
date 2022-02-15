@@ -3,6 +3,7 @@ package storage
 import (
 	"cmd/process"
 	"os"
+	"time"
 
 	"github.com/jedib0t/go-pretty/v6/table"
 )
@@ -13,8 +14,7 @@ type Storage struct {
 }
 
 var (
-	pid    int
-	format = "dd MMMM HH:mm:ss"
+	pid int
 )
 
 func (s *Storage) Init(capacity int) {
@@ -53,7 +53,7 @@ func (s Storage) View() {
 	t.AppendHeader(table.Row{"#", "PID", "Delay", "Created At", "Last Update", "Task", "Number of executions"})
 
 	for i, p := range s.list {
-		t.AppendRow([]interface{}{i, p.PID, p.Delay, p.CreatedAt.Format(format), p.UpdatedAt.Format(format), p.Task, p.Called})
+		t.AppendRow([]interface{}{i, p.PID, p.Delay, p.CreatedAt.Format(time.StampMilli), p.UpdatedAt.Format(time.StampMilli), p.Task, p.Called})
 	}
 	t.Render()
 }

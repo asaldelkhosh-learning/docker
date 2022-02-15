@@ -38,7 +38,7 @@ func main() {
 	user, _ := os.Hostname()
 
 	for true {
-		fmt.Printf("%s $ ", user)
+		fmt.Printf("%s > ", user)
 		cmd, err := inp.Decode(inp.Get())
 
 		c := exec.Command("clear")
