@@ -35,8 +35,10 @@ func main() {
 
 	lock.Init()
 
+	user, _ := os.Hostname()
+
 	for true {
-		fmt.Print("> ")
+		fmt.Printf("%s $ ", user)
 		cmd, err := inp.Decode(inp.Get())
 
 		c := exec.Command("clear")
