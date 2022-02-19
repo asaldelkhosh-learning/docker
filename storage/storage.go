@@ -1,7 +1,9 @@
 package storage
 
 import (
+	"cmd/lock"
 	"cmd/process"
+	"fmt"
 	"os"
 	"os/exec"
 	"time"
@@ -84,4 +86,6 @@ func (s Storage) View() {
 		})
 	}
 	t.Render()
+
+	fmt.Printf("Last PID %d\nLast Update %s\n", lock.Last, time.Now().Format(time.StampMilli))
 }
