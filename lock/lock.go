@@ -3,11 +3,11 @@ package lock
 import "sync"
 
 var (
-	Lock sync.Mutex
+	C    *sync.Cond
 	Last int32
 )
 
 func Init() {
-	Lock = sync.Mutex{}
+	C = sync.NewCond(&sync.Mutex{})
 	Last = -1
 }

@@ -28,7 +28,7 @@ func (p *Process) Run() {
 			continue
 		}
 		// Lock
-		lock.Lock.Lock()
+		lock.C.L.Lock()
 		lock.Last = p.PID
 		// Do
 		p.Called++
@@ -36,7 +36,7 @@ func (p *Process) Run() {
 		// Burst
 		time.Sleep(time.Second * time.Duration(p.Burst))
 		// Unlock
-		lock.Lock.Unlock()
+		lock.C.L.Unlock()
 		// Waiting
 		time.Sleep(time.Second * time.Duration(p.Delay))
 	}
