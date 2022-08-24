@@ -11,7 +11,7 @@ type input struct {
 	reader *bufio.Reader
 }
 
-func (i input) init() input {
+func (i input) initInput() input {
 	i.reader = bufio.NewReader(os.Stdin)
 	if i.reader == nil {
 		panic(fmt.Errorf("problem in reader"))

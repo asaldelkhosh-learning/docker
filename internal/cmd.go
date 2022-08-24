@@ -26,9 +26,9 @@ func Execute() {
 	stg := Storage{}
 	stg.Init(c)
 
-	inp := input{}.init()
+	inp := input{}.initInput()
 
-	Init()
+	initLock()
 
 	user, _ := os.Hostname()
 

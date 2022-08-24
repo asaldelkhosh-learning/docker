@@ -7,7 +7,7 @@ var (
 	Last int32
 )
 
-func Init() {
+func initLock() {
 	C = sync.NewCond(&sync.Mutex{})
 	Last = -1
 }
