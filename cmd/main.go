@@ -1,11 +1,11 @@
 package main
 
 import (
-	"cmd/input"
-	"cmd/lock"
-	"cmd/process"
-	"cmd/storage"
 	"fmt"
+	"github.com/amirhnajafiz/procces-monitoring/input"
+	"github.com/amirhnajafiz/procces-monitoring/lock"
+	"github.com/amirhnajafiz/procces-monitoring/process"
+	"github.com/amirhnajafiz/procces-monitoring/storage"
 	"os"
 	"strconv"
 	"time"

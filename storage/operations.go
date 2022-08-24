@@ -1,6 +1,6 @@
 package storage
 
-import "cmd/process"
+import "github.com/amirhnajafiz/procces-monitoring/process"
 
 func (s *Storage) Add(p *process.Process) *process.Process {
 	if pid > s.capacity {

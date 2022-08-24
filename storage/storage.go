@@ -1,7 +1,7 @@
 package storage
 
 import (
-	"cmd/process"
+	"github.com/amirhnajafiz/procces-monitoring/process"
 )
 
 type Storage struct {

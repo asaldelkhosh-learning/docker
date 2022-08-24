@@ -1,8 +1,8 @@
 package storage
 
 import (
-	"cmd/lock"
 	"fmt"
+	"github.com/amirhnajafiz/procces-monitoring/lock"
 	"github.com/jedib0t/go-pretty/v6/table"
 	"os"
 	"os/exec"

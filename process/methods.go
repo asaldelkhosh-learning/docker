@@ -1,8 +1,8 @@
 package process
 
 import (
-	"cmd/lock"
 	"fmt"
+	"github.com/amirhnajafiz/procces-monitoring/lock"
 	"time"
 )
 
