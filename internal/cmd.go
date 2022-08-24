@@ -26,7 +26,7 @@ func Execute() {
 	stg := Storage{}
 	stg.Init(c)
 
-	inp := Input{}.Init()
+	inp := input{}.init()
 
 	Init()
 
@@ -35,7 +35,7 @@ func Execute() {
 	for true {
 		stg.View()
 		fmt.Printf("\n%s > ", user)
-		cmd, err := inp.Decode(inp.Get())
+		cmd, err := inp.decode(inp.get())
 
 		if err != nil {
 			fmt.Println(err.Error())

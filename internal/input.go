@@ -7,11 +7,11 @@ import (
 	"strings"
 )
 
-type Input struct {
+type input struct {
 	reader *bufio.Reader
 }
 
-func (i Input) Init() Input {
+func (i input) init() input {
 	i.reader = bufio.NewReader(os.Stdin)
 	if i.reader == nil {
 		panic(fmt.Errorf("problem in reader"))
@@ -19,14 +19,14 @@ func (i Input) Init() Input {
 	return i
 }
 
-func (i Input) Get() string {
+func (i input) get() string {
 	cmd, _ := i.reader.ReadString('\n')
 	cmd = strings.Trim(cmd, "\n")
 
 	return cmd
 }
 
-func (i Input) Decode(cmd string) (map[string]string, error) {
+func (i input) decode(cmd string) (map[string]string, error) {
 	pack := make(map[string]string)
 	parts := strings.Split(cmd, " ")
 
