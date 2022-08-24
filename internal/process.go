@@ -1,10 +1,8 @@
-package process
+package main
 
 import (
 	"fmt"
 	"time"
-
-	"github.com/amirhnajafiz/process-monitoring/lock"
 )
 
 type Process struct {
@@ -29,15 +27,15 @@ func (p *Process) Run() {
 			continue
 		}
 		// Lock
-		lock.C.L.Lock()
-		lock.Last = p.PID
+		C.L.Lock()
+		Last = p.PID
 		// Do
 		p.Called++
 		p.UpdatedAt = time.Now()
 		// Burst
 		time.Sleep(time.Second * time.Duration(p.Burst))
 		// Unlock
-		lock.C.L.Unlock()
+		C.L.Unlock()
 		// Waiting
 		time.Sleep(time.Second * time.Duration(p.Delay))
 	}

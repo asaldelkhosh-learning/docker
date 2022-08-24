@@ -5,11 +5,6 @@ import (
 	"os"
 	"strconv"
 	"time"
-
-	"github.com/amirhnajafiz/process-monitoring/input"
-	"github.com/amirhnajafiz/process-monitoring/lock"
-	"github.com/amirhnajafiz/process-monitoring/process"
-	"github.com/amirhnajafiz/process-monitoring/storage"
 )
 
 func main() {
@@ -28,12 +23,12 @@ func main() {
 		panic(fmt.Errorf("limit should be number, invalid: '%s'", os.Args[1]))
 	}
 
-	stg := storage.Storage{}
+	stg := Storage{}
 	stg.Init(c)
 
-	inp := input.Input{}.Init()
+	inp := Input{}.Init()
 
-	lock.Init()
+	Init()
 
 	user, _ := os.Hostname()
 
@@ -59,7 +54,7 @@ func main() {
 				panic(err)
 			}
 
-			proc := stg.Add(&process.Process{
+			proc := stg.Add(&Process{
 				Delay:     int32(delay),
 				Task:      cmd["--task"],
 				Burst:     int32(burst),

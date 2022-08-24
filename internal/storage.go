@@ -1,4 +1,4 @@
-package storage
+package main
 
 import (
 	"fmt"
@@ -6,13 +6,11 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/amirhnajafiz/process-monitoring/lock"
-	"github.com/amirhnajafiz/process-monitoring/process"
 	"github.com/jedib0t/go-pretty/v6/table"
 )
 
 type Storage struct {
-	list     []*process.Process
+	list     []*Process
 	capacity int
 }
 
@@ -25,7 +23,7 @@ func (s *Storage) Init(capacity int) {
 	pid = 1
 }
 
-func (s *Storage) Add(p *process.Process) *process.Process {
+func (s *Storage) Add(p *Process) *Process {
 	if pid > s.capacity {
 		return nil
 	}
@@ -87,5 +85,5 @@ func (s Storage) View() {
 	}
 	t.Render()
 
-	fmt.Printf("Last PID %d\nLast Update %s\n", lock.Last, time.Now().Format(time.StampMilli))
+	fmt.Printf("Last PID %d\nLast Update %s\n", Last, time.Now().Format(time.StampMilli))
 }
