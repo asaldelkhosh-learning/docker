@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
-	"github.com/amirhnajafiz/procces-monitoring/input"
-	"github.com/amirhnajafiz/procces-monitoring/lock"
-	"github.com/amirhnajafiz/procces-monitoring/process"
-	"github.com/amirhnajafiz/procces-monitoring/storage"
 	"os"
 	"strconv"
 	"time"
+
+	"github.com/amirhnajafiz/process-monitoring/input"
+	"github.com/amirhnajafiz/process-monitoring/lock"
+	"github.com/amirhnajafiz/process-monitoring/process"
+	"github.com/amirhnajafiz/process-monitoring/storage"
 )
 
 func main() {

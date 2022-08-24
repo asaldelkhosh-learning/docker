@@ -6,8 +6,8 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/amirhnajafiz/procces-monitoring/lock"
-	"github.com/amirhnajafiz/procces-monitoring/process"
+	"github.com/amirhnajafiz/process-monitoring/lock"
+	"github.com/amirhnajafiz/process-monitoring/process"
 	"github.com/jedib0t/go-pretty/v6/table"
 )
 

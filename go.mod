@@ -1,4 +1,4 @@
-module github.com/amirhnajafiz/procces-monitoring
+module github.com/amirhnajafiz/process-monitoring
 
 go 1.17
 

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/amirhnajafiz/procces-monitoring/lock"
+	"github.com/amirhnajafiz/process-monitoring/lock"
 )
 
 type Process struct {
