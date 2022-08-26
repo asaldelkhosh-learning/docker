@@ -9,7 +9,7 @@ import (
 	"github.com/jedib0t/go-pretty/v6/table"
 )
 
-type Storage struct {
+type storage struct {
 	list     []*Process
 	capacity int
 }
@@ -18,12 +18,12 @@ var (
 	pid int
 )
 
-func (s *Storage) Init(capacity int) {
+func (s *storage) initStorage(capacity int) {
 	s.capacity = capacity
 	pid = 1
 }
 
-func (s *Storage) Add(p *Process) *Process {
+func (s *storage) add(p *Process) *Process {
 	if pid > s.capacity {
 		return nil
 	}
@@ -36,7 +36,7 @@ func (s *Storage) Add(p *Process) *Process {
 	return p
 }
 
-func (s *Storage) Kill(ID int32) {
+func (s *storage) kill(ID int32) {
 	for index := 0; index < len(s.list); index++ {
 		if proc := s.list[index]; ID == proc.PID {
 			proc.Terminate = true
@@ -46,7 +46,7 @@ func (s *Storage) Kill(ID int32) {
 	}
 }
 
-func (s Storage) Pause(ID int32, flag bool) {
+func (s storage) Pause(ID int32, flag bool) {
 	for _, p := range s.list {
 		if p.PID == ID {
 			p.Pause = flag
@@ -55,7 +55,7 @@ func (s Storage) Pause(ID int32, flag bool) {
 	}
 }
 
-func (s Storage) View() {
+func (s storage) view() {
 	c := exec.Command("clear")
 	c.Stdout = os.Stdout
 	_ = c.Run()

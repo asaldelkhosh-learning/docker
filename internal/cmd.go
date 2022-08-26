@@ -23,8 +23,8 @@ func Execute() {
 		panic(fmt.Errorf("limit should be number, invalid: '%s'", os.Args[1]))
 	}
 
-	stg := Storage{}
-	stg.Init(c)
+	stg := storage{}
+	stg.initStorage(c)
 
 	inp := input{}.initInput()
 
@@ -33,7 +33,7 @@ func Execute() {
 	user, _ := os.Hostname()
 
 	for true {
-		stg.View()
+		stg.view()
 		fmt.Printf("\n%s > ", user)
 		cmd, err := inp.decode(inp.get())
 
@@ -54,7 +54,7 @@ func Execute() {
 				panic(err)
 			}
 
-			proc := stg.Add(&Process{
+			proc := stg.add(&Process{
 				Delay:     int32(delay),
 				Task:      cmd["--task"],
 				Burst:     int32(burst),
@@ -76,7 +76,7 @@ func Execute() {
 				panic(err)
 			}
 
-			stg.Kill(int32(ID))
+			stg.kill(int32(ID))
 		case cmd["command"] == "pause":
 			ID, err := strconv.Atoi(cmd["--id"])
 			if err != nil {
