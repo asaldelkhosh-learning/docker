@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func Execute() {
+func Run() {
 	var (
 		c  int
 		er error
@@ -16,15 +16,12 @@ func Execute() {
 	if len(os.Args) == 1 {
 		c = 10
 	} else {
-		c, er = strconv.Atoi(os.Args[1])
+		if c, er = strconv.Atoi(os.Args[1]); er != nil {
+			panic(fmt.Errorf("limit should be number, invalid: '%s'", os.Args[1]))
+		}
 	}
 
-	if er != nil {
-		panic(fmt.Errorf("limit should be number, invalid: '%s'", os.Args[1]))
-	}
-
-	stg := storage{}
-	stg.initStorage(c)
+	stg := newStorage(c)
 
 	inp := input{}.initInput()
 
