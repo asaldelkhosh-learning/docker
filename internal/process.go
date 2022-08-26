@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-type Process struct {
+type process struct {
 	PID       int32
 	Task      string
 	CreatedAt time.Time
@@ -17,7 +17,7 @@ type Process struct {
 	Pause     bool
 }
 
-func (p *Process) Run() {
+func (p *process) run() {
 	// Function
 	p.Called = 0
 	for !p.Terminate {
@@ -41,6 +41,6 @@ func (p *Process) Run() {
 	}
 }
 
-func (p *Process) Status(i int) string {
+func (p *process) status(i int) string {
 	return fmt.Sprintf("%d: Process %d | Task %s | Executed %d | Last Update %s\n", i+1, p.PID, p.Task, p.Called, p.UpdatedAt)
 }

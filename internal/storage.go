@@ -10,7 +10,7 @@ import (
 )
 
 type storage struct {
-	list     []*Process
+	list     []*process
 	capacity int
 }
 
@@ -23,7 +23,7 @@ func (s *storage) initStorage(capacity int) {
 	pid = 1
 }
 
-func (s *storage) add(p *Process) *Process {
+func (s *storage) add(p *process) *process {
 	if pid > s.capacity {
 		return nil
 	}

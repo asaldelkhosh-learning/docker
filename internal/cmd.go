@@ -54,7 +54,7 @@ func Execute() {
 				panic(err)
 			}
 
-			proc := stg.add(&Process{
+			proc := stg.add(&process{
 				Delay:     int32(delay),
 				Task:      cmd["--task"],
 				Burst:     int32(burst),
@@ -69,7 +69,7 @@ func Execute() {
 				continue
 			}
 
-			go proc.Run()
+			go proc.run()
 		case cmd["command"] == "kill":
 			ID, err := strconv.Atoi(cmd["--id"])
 			if err != nil {
