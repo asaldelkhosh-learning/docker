@@ -24,23 +24,37 @@ func (p *process) run() {
 		// Check for pause
 		if p.Pause {
 			time.Sleep(3 * time.Second)
+
 			continue
 		}
+
 		// Lock
 		C.L.Lock()
+
 		Last = p.PID
+
 		// Do
 		p.Called++
 		p.UpdatedAt = time.Now()
+
 		// Burst
 		time.Sleep(time.Second * time.Duration(p.Burst))
+
 		// Unlock
 		C.L.Unlock()
+
 		// Waiting
 		time.Sleep(time.Second * time.Duration(p.Delay))
 	}
 }
 
 func (p *process) status(i int) string {
-	return fmt.Sprintf("%d: Process %d | Task %s | Executed %d | Last Update %s\n", i+1, p.PID, p.Task, p.Called, p.UpdatedAt)
+	return fmt.Sprintf(
+		"%d: Process %d | Task %s | Executed %d | Last Update %s\n",
+		i+1,
+		p.PID,
+		p.Task,
+		p.Called,
+		p.UpdatedAt,
+	)
 }

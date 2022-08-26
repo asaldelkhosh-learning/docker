@@ -22,20 +22,22 @@ func Run() {
 	}
 
 	stg := newStorage(c)
+	inp := newInput()
 
-	inp := input{}.initInput()
-
-	initLock()
+	newLock()
 
 	user, _ := os.Hostname()
 
 	for true {
 		stg.view()
+
 		fmt.Printf("\n%s > ", user)
+
 		cmd, err := inp.decode(inp.get())
 
 		if err != nil {
 			fmt.Println(err.Error())
+
 			continue
 		}
 
@@ -80,14 +82,14 @@ func Run() {
 				panic(err)
 			}
 
-			stg.Pause(int32(ID), true)
+			stg.pause(int32(ID), true)
 		case cmd["command"] == "run":
 			ID, err := strconv.Atoi(cmd["--id"])
 			if err != nil {
 				panic(err)
 			}
 
-			stg.Pause(int32(ID), false)
+			stg.pause(int32(ID), false)
 		case cmd["command"] == "terminate":
 			os.Exit(1)
 		}

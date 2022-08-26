@@ -11,12 +11,15 @@ type input struct {
 	reader *bufio.Reader
 }
 
-func (i input) initInput() input {
-	i.reader = bufio.NewReader(os.Stdin)
-	if i.reader == nil {
+func newInput() input {
+	reader := bufio.NewReader(os.Stdin)
+	if reader == nil {
 		panic(fmt.Errorf("problem in reader"))
 	}
-	return i
+
+	return input{
+		reader: reader,
+	}
 }
 
 func (i input) get() string {
@@ -28,8 +31,8 @@ func (i input) get() string {
 
 func (i input) decode(cmd string) (map[string]string, error) {
 	pack := make(map[string]string)
-	parts := strings.Split(cmd, " ")
 
+	parts := strings.Split(cmd, " ")
 	if len(parts) == 0 {
 		return nil, fmt.Errorf("empty input")
 	}
@@ -41,6 +44,7 @@ func (i input) decode(cmd string) (map[string]string, error) {
 			if index+1 >= len(parts) {
 				return nil, fmt.Errorf("mismatch in key value pairs")
 			}
+
 			if strings.HasPrefix(parts[index+1], "--") {
 				return nil, fmt.Errorf("no values for '%s' flag were given", parts[index])
 			}
